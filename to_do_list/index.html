@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do list maker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header part of the web page -->
+    <header>
+      <h1 class="heading">To Do</h1>
+      <div class="task-bar">
+        <div class="my-day-container">
+          <h2 class="my-day">My Day</h2>
+          <p id="date" aria-label="today date"></p>
+        </div>
+        <div class="sort-container">
+          <button class="sort-button">Sort By <i class="fa-solid fa-sort"></i></button>
+          <ul class="drop-down">
+            <li data-sort="alphabatical">Alphabatical</li>
+            ,<li data-sort="important" >Important</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main role="main">
+      <!-- this part take input from user -->
+      <div class="icon-input">
+        <i class="fa-regular fa-circle icon" aria-hidden="true"></i>
+        <label for="task-input" class="visibility-hidden">Add a Task</label>
+        <input
+          id="task-input"
+          type="text"
+          placeholder="Add a Task"
+          class="tasks"
+          aria-label="enter the task here"
+        />
+      </div>
+      <!-- button to sumbmit the tasks to list items -->
+      <button class="btn" aria-label="add">Add</button>
+      <div class="container">
+        <ul id="task-items" aria-live="polite" aria-label="List of tasks">
+          <!-- here the task will appear when we click on the add button -->
+        </ul>
+        <!-- This button will clear all the list item that is added all at once -->
+      </div>
+      <button class="clear" aria-label="clear all task">Clear All</button>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
