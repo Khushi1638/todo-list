@@ -87,6 +87,7 @@ The current version of the To-Do list has two primary features:
 5. Added the **Clear All** button to delete the all task and also remove it from the local storage.
 6. Added some features to enhance accessibility.
 7. Added the functionality to sort the taks in alphabatical and in important.
+8. Added the drag and drop API to the list items.
 
 In the next iteration, I plan to:
 - Make the design **more visually appealing** and **responsive** for mobile use.

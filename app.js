@@ -91,10 +91,14 @@ const cancelEvent = (cancel, listItem) => {
 };
 
 //function to create list items
-
+let taskId =0;
 const createList = () => {
   let listItem = document.createElement("li");
   listItem.classList.add("dynamic-item");
+  //making the list item draggable
+  listItem.draggable = "true";
+  //assigning id to track list item during drag and drop
+  listItem.id = `task-${taskId++}`;
 
   let icon = document.createElement("i");
   icon.className = "fa-regular fa-circle icon";
@@ -245,6 +249,47 @@ tasks.addEventListener("keydown", (e) => {
   }
 });
 
+//adding the event listner to the item to start the dragging
+items.addEventListener("dragstart" , (e)=>{
+  if(e.target.classList.contains("dynamic-item")){
+    e.dataTransfer.setData("text/plain",e.target.id);
+    e.target.classList.add("dragging");
+  }
+});
+
+// event listner to dragover the item and deciding its place
+items.addEventListener("dragover" , (e) =>{
+  e.preventDefault();
+  const draggingItem = document.querySelector(".dragging");
+  const targetItem = e.target.closest(".dynamic-item");
+
+  if(targetItem && targetItem !== draggingItem){
+    const bounding = targetItem.getBoundingClientRect(); //get the position of target item 
+    const offset = e.clientY - bounding.top; 
+    
+    if(offset > bounding.height/2){
+      targetItem.after(draggingItem);
+    } else {
+      targetItem.before(draggingItem);
+    }
+  }
+});
+//dropping the element correctly
+items.addEventListener("drop",(e)=>{
+  e.preventDefault();
+  const draggingItem = document.querySelector(".dragging");
+  draggingItem.classList.add("dropped");
+  setTimeout(() =>{
+    draggingItem.classList.remove("dropped");
+  },400);
+  saveTasks();
+});
+//removing the dragging class
+items.addEventListener("dragend", (e) => {
+  if (e.target.classList.contains("dynamic-item")) {
+    e.target.classList.remove("dragging");
+  }
+});
 // writing function to clear all the list item in the item conntainer
 const clearTask = () => {
   items.innerHTML = "";

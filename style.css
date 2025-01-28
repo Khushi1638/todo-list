@@ -184,6 +184,24 @@
   opacity: 1;
   transform: translateY(0);
 }
+/* Defining the keyframe to creatre animation */
+@keyframes bounce {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.1);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+#task-items li.dropped{
+  animation: bounce 0.4s ease-in-out;
+  background-color: #f0f8ff; /* Light blue to emphasize drop */
+  transition: background-color 0.4s ease;
+}
 #task-items li:hover {
   background-color: #faf9f8;
 }
@@ -243,4 +261,8 @@
   font-size: 1.1rem;
   background-color: #fff;
   color: gray;
+}
+.dynamic-item.dragging {
+  opacity: 0.7;
+  background-color: #f0f0f0;
 }
